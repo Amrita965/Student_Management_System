@@ -19,5 +19,60 @@ class StudentManagementSystem:
     def display_course_details(self):
         pass
     
+sms = StudentManagementSystem()
+
+def display_menu():
+    mainMenu = """
+    ==== Student Management System ====
+    1. Add New Student
+    2. Add New Course
+    3. Enroll Student in Course
+    4. Add Grade for Student
+    5. Display Student Details
+    6. Display Course Details
+    7. Save Data to File
+    8. Load Data from File
+    0. Exit
+    """
+    option = input("Select Option: ")
+    return option
+    
+while True:
+    
+    option = display_menu()
+    
+    if option == "1":
+        name = input("Enter Name: ")
+        age = int(input("Enter Age: "))
+        address = input("Enter Address ")
+        student_id = input("Enter Student ID: ")
+        sms.add_student(name, age, address, student_id)
+    
+    elif option == "2":
+        pass
+    
+    elif option == "3":
+        pass
+    
+    elif option == "4":
+        pass
+    
+    elif option == "5":
+        pass
+    
+    elif option == "6":
+        pass
+    
+    elif option == "7":
+        pass
+    
+    elif option == "8":
+        pass
+    
+    elif option == "0":
+        exit()
         
+    else:
+        print("Invalid Option Selected. Please Try Again a Valid Choice.")
+    
     
