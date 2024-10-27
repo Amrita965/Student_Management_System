@@ -2,14 +2,18 @@
 import os
 import json
 
-def addDataToJSONFile(dictdata, fileName, filePath):
+def addDataToJSONFile(dictdata, searchKey, searchValue, fileName, filePath):
     #Check if the file exists before trying to load data
-    data = loadDataFromJSONFile(filePath, fileName)
-    #Append the new data to the exitsting data
-    data.append(dictdata)
+    records = loadDataFromJSONFile(filePath, fileName)
+    if isDataExits(records, searchKey, searchValue):
+        return {"acknowledged": False}
+    # Append the new data to the exitsting data
+    records.append(dictdata)
     # Write the updated data back to the JSON file
     with open(os.path.join(filePath, fileName), "w") as fp:
-        json.dump(data, fp, indent=2)
+        json.dump(records, fp, indent=2)
+        
+    return {"acknowledged": True}
         
        
 def loadDataFromJSONFile(filePath, fileName):
@@ -28,7 +32,17 @@ def loadDataFromJSONFile(filePath, fileName):
         return []
         
 
-
+def isDataExits(records, searchKey, searchValue):
+    
+    for record in records:
+        if (record[searchKey] == searchValue):
+            return True
+        
+    return False
+        
+    
+    
+    
 
     
        

@@ -16,8 +16,16 @@ class StudentManagementSystem:
         # Convert Student Object to Dictionary Data 
         student_dict = student_obj.__dict__
         # Save Student Data to a JSON File
-        addDataToJSONFile(student_dict, fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
-        print(f"Student {student_dict['name']} (ID: {student_dict['student_id']}) added successfully.")
+        response = addDataToJSONFile(student_dict, searchKey="student_id", searchValue=student_id, fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
+        
+        print(response)
+        
+        if response['acknowledged']:
+            print(f"Student {student_dict['name']} (ID: {student_dict['student_id']}) added successfully.")
+            
+        else:
+            print(f"Student with ID {student_id} already exists. Please enter a unique student ID.")
+        
         
         
     def add_course(self, course_name, course_code, instructor):
@@ -26,8 +34,13 @@ class StudentManagementSystem:
         # Convert Course Object to Distonary Data
         course_dict = course_obj.__dict__
         # Save Course Data to a JSON File
-        addDataToJSONFile(course_dict, fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
-        print(f"Course {course_dict['course_name']} (Code: {course_dict['course_code']}) created with instructor {course_dict['insturctor']}.")
+        response = addDataToJSONFile(course_dict, searchKey="course_code", searchValue=course_code, fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
+        
+        if(response["acknowledged"]):
+            print(f"Course {course_dict['course_name']} (Code: {course_dict['course_code']}) created with instructor {course_dict['insturctor']}.")
+            
+        else:
+            print(f"Course with code {course_code} already exists. Please enter a unique course code.")
         
         
     def enroll_in_course(self, studentId, course_code):

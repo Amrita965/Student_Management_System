@@ -1,7 +1,32 @@
 [
   {
-    "course_name": "Physics",
-    "course_code": "PHY101",
-    "insturctor": "Dr. Amrita Dey"
+    "course_name": "Mathematics",
+    "course_code": "MTH101",
+    "insturctor": "Dr. Farida Rahman"
+  },
+  {
+    "course_name": "Chemistry",
+    "course_code": "CHM102",
+    "insturctor": "Dr. Mahmudul Hasan"
+  },
+  {
+    "course_name": "Biology",
+    "course_code": "BIO103",
+    "insturctor": "Dr. Nazma Begum"
+  },
+  {
+    "course_name": "Computer Science",
+    "course_code": "CSE104",
+    "insturctor": "Dr. Shamsul Arefin"
+  },
+  {
+    "course_name": "Economics",
+    "course_code": "ECO105",
+    "insturctor": "Dr. Rina Sultana"
+  },
+  {
+    "course_name": "History",
+    "course_code": "HIS106",
+    "insturctor": "Dr. Ahsanul Haque"
   }
 ]

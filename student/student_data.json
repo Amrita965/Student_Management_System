@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Aisha",
+    "age": 20,
+    "address": "Chittagong",
+    "student_id": "S002"
+  },
+  {
+    "name": "Rahim",
+    "age": 21,
+    "address": "Sylhet",
+    "student_id": "S003"
+  },
+  {
+    "name": "Priya",
+    "age": 23,
+    "address": "Rajshahi",
+    "student_id": "S004"
+  },
+  {
+    "name": "Ahmed",
+    "age": 22,
+    "address": "Khulna",
+    "student_id": "S005"
+  },
+  {
+    "name": "Farah",
+    "age": 19,
+    "address": "Barishal",
+    "student_id": "S006"
+  }
+]
