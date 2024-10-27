@@ -1,5 +1,6 @@
 
 from student.student import Student
+from course.course import Course
 from utilities.student_utilites import addDataToJSONFile
 import os
 
@@ -18,9 +19,17 @@ class StudentManagementSystem:
         addDataToJSONFile(student_dict, fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
         print(f"Student {student_dict['name']} (ID: {student_dict['student_id']}) added successfully.")
         
+        
     def add_course(self, course_name, course_code, instructor):
-        pass
-    
+        # Create an Instance of Course Class
+        course_obj = Course(course_name, course_code, instructor)
+        # Convert Course Object to Distonary Data
+        course_dict = course_obj.__dict__
+        # Save Course Data to a JSON File
+        addDataToJSONFile(course_dict, fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
+        print(f"Course {course_dict['course_name']} (Code: {course_dict['course_code']}) created with instructor {course_dict['insturctor']}.")
+        
+        
     def enroll_in_course(self, studentId, course_code):
         pass
     
@@ -64,8 +73,11 @@ while True:
         sms.add_student(name, age, address, student_id)
     
     elif option == "2":
-        pass
-    
+        course_name = input("Enter Course Name: ")
+        course_code = input("Enter Course Code: ")
+        instructor = input("Enter Instructor Name: ")
+        sms.add_course(course_name, course_code, instructor)
+
     elif option == "3":
         pass
     
