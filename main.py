@@ -72,7 +72,11 @@ class StudentManagementSystem:
         pass
     
     def display_student_details(self, student_id):
-        pass
+        existing_student = StudentManagementSystem.record_exists(self.students, "student_id", student_id)
+        if existing_student:
+            existing_student.display_student_info()
+            return
+        print(f"ERROR:: Student ID {student_id} doesn't exist.")
     
     def display_course_details(self, course_code):
         existing_course = StudentManagementSystem.record_exists(self.courses, "course_code", course_code)

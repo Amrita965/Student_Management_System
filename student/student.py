@@ -60,8 +60,22 @@ class Student(Person):
             json.dump([current_student, *rest_records], fp, indent=4)
         
         print(f"Student {self.student_id} has been enrolled in course {course.course_name}.")
-    
             
     def display_student_info(self):
-        pass
+        print("Student Information:")
+        print(f"Name: {self.name}")
+        print(f"ID: {self.student_id}")
+        print(f"Age: {self.age}")
+        print(f"Address: {self.address}")
+        
+        if hasattr(self, 'courses'):
+            print("Enrolled Courses:")
+            print("------------------------------------------------------------")
+            
+            for course in self.courses:
+                print("Course Name: ", course['course_name'])
+                print("Course Code: ", course['course_code'])
+                print("------------------------------------------------------------")
+
+
     
