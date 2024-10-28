@@ -2,6 +2,7 @@
 from student.student import Student
 from course.course import Course
 from utilities.student_utilites import addDataToJSONFile
+from utilities.student_utilites import loadDataFromJSONFile
 import os
 
 current_path = os.getcwd()
@@ -10,6 +11,14 @@ print(os.path.join(current_path, 'student'))
 
 class StudentManagementSystem:
     
+    def __init__(self):
+        students = loadDataFromJSONFile(fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
+        courses = loadDataFromJSONFile(fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
+        
+        self.students = StudentManagementSystem.dictToObject(list=students, class_name=Student)
+        self.courses = StudentManagementSystem.dictToObject(list=courses, class_name=Course)
+        
+    
     def add_student(self, name, age, address, student_id):
         # Create an Instance of Student Class
         student_obj = Student(name, age, address, student_id)
@@ -17,15 +26,14 @@ class StudentManagementSystem:
         student_dict = student_obj.__dict__
         # Save Student Data to a JSON File
         response = addDataToJSONFile(student_dict, searchKey="student_id", searchValue=student_id, fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
-        
-        print(response)
-        
+        # Check if the response indicates a successful course creation
         if response['acknowledged']:
+            self.students.append(student_obj)
             print(f"Student {student_dict['name']} (ID: {student_dict['student_id']}) added successfully.")
             
         else:
+            # Print an error message advising the user that the student id already exists
             print(f"Student with ID {student_id} already exists. Please enter a unique student ID.")
-        
         
         
     def add_course(self, course_name, course_code, instructor):
@@ -35,11 +43,13 @@ class StudentManagementSystem:
         course_dict = course_obj.__dict__
         # Save Course Data to a JSON File
         response = addDataToJSONFile(course_dict, searchKey="course_code", searchValue=course_code, fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
-        
+        # Check if the response indicates a successful course creation
         if(response["acknowledged"]):
+            self.courses.append(course_obj)
             print(f"Course {course_dict['course_name']} (Code: {course_dict['course_code']}) created with instructor {course_dict['insturctor']}.")
             
         else:
+            # Print an error message advising the user that the course code already exists
             print(f"Course with code {course_code} already exists. Please enter a unique course code.")
         
         
@@ -54,6 +64,12 @@ class StudentManagementSystem:
     
     def display_course_details(self):
         pass
+    
+    @staticmethod
+    def dictToObject(list, class_name):
+        return [class_name(**dict) for dict in list]
+        
+            
     
 sms = StudentManagementSystem()
 
