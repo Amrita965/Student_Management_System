@@ -10,5 +10,11 @@ class Course:
         pass
     
     def display_course_info(self):
-        pass
+        print("Course Information:")
+        print("Course Name:", self.course_name)
+        print("Code:", self.course_code)
+        print("Instructor:", self.insturctor)
+        
+        
+
         

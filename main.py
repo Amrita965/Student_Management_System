@@ -5,65 +5,85 @@ from utilities.student_utilites import addDataToJSONFile
 from utilities.student_utilites import loadDataFromJSONFile
 import os
 
-current_path = os.getcwd()
 
-print(os.path.join(current_path, 'student'))
+current_path = os.getcwd()
 
 class StudentManagementSystem:
     
     def __init__(self):
         students = loadDataFromJSONFile(fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
         courses = loadDataFromJSONFile(fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
-        
         self.students = StudentManagementSystem.dictToObject(list=students, class_name=Student)
         self.courses = StudentManagementSystem.dictToObject(list=courses, class_name=Course)
-        
-    
+
     def add_student(self, name, age, address, student_id):
+        existing_student = StudentManagementSystem.record_exists(records=self.students, searchKey="student_id", searchValue=student_id)
+        if existing_student:
+             # Print an error message advising the user that the student id already exists
+            print(f"Error:: Student with ID {student_id} already exists. Please enter a unique student ID.")
+            return
         # Create an Instance of Student Class
         student_obj = Student(name, age, address, student_id)
-        # Convert Student Object to Dictionary Data 
+        # Convert Student Object to Distonary Data
         student_dict = student_obj.__dict__
         # Save Student Data to a JSON File
-        response = addDataToJSONFile(student_dict, searchKey="student_id", searchValue=student_id, fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
+        response = addDataToJSONFile(student_dict, fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
         # Check if the response indicates a successful course creation
         if response['acknowledged']:
             self.students.append(student_obj)
-            print(f"Student {student_dict['name']} (ID: {student_dict['student_id']}) added successfully.")
-            
-        else:
-            # Print an error message advising the user that the student id already exists
-            print(f"Student with ID {student_id} already exists. Please enter a unique student ID.")
+            print(f"Student {student_obj.name} (ID: {student_obj.student_id}) added successfully.")
         
         
     def add_course(self, course_name, course_code, instructor):
+        existing_course = StudentManagementSystem.record_exists(records=self.courses, searchKey="course_code", searchValue=course_code)
+        
+        if existing_course:
+            print(f"Error:: Course with code {course_code} already exists. Please enter a unique course code.")
+            return
         # Create an Instance of Course Class
         course_obj = Course(course_name, course_code, instructor)
         # Convert Course Object to Distonary Data
         course_dict = course_obj.__dict__
         # Save Course Data to a JSON File
-        response = addDataToJSONFile(course_dict, searchKey="course_code", searchValue=course_code, fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
+        response = addDataToJSONFile(course_dict, fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
         # Check if the response indicates a successful course creation
         if(response["acknowledged"]):
             self.courses.append(course_obj)
             print(f"Course {course_dict['course_name']} (Code: {course_dict['course_code']}) created with instructor {course_dict['insturctor']}.")
-            
-        else:
-            # Print an error message advising the user that the course code already exists
-            print(f"Course with code {course_code} already exists. Please enter a unique course code.")
+
         
+    def enroll_in_course(self, student_id, course_code):
+        existing_student = StudentManagementSystem.record_exists(self.students, "student_id", student_id)
+        existing_course = StudentManagementSystem.record_exists(self.courses, "course_code", course_code)
+
+        if existing_student and existing_course:
+            existing_student.enroll_course(existing_course)
+            return
         
-    def enroll_in_course(self, studentId, course_code):
-        pass
-    
+        # Print appropriate error messages based on the missing record(s)
+        if not existing_student:
+            print("Error:: Enrollment failed. No student found with the provided student ID.")
+        
+        if not existing_course:
+            print("Error:: Enrollment failed. No course found with the provided course code.")
+
+        
     def add_grade(self, studentId, course_code):
         pass
     
-    def display_student_details(self):
+    def display_student_details(self, student_id):
         pass
     
-    def display_course_details(self):
-        pass
+    def display_course_details(self, course_code):
+        existing_course = StudentManagementSystem.record_exists(self.courses, "course_code", course_code)
+        existing_course.display_course_info()
+         
+    @staticmethod
+    def record_exists(records, searchKey, searchValue):       
+        for record in records:
+           if (record.__dict__)[searchKey] == searchValue:
+               return record
+        return None
     
     @staticmethod
     def dictToObject(list, class_name):
@@ -108,22 +128,27 @@ while True:
         sms.add_course(course_name, course_code, instructor)
 
     elif option == "3":
+        student_id = input("Enter Student ID: ")
+        course_code = input("Enter Course Code: ")
+        sms.enroll_in_course(student_id, course_code)
         pass
     
     elif option == "4":
         pass
     
     elif option == "5":
-        pass
+        student_id = input("Enter Student ID: ")
+        sms.display_student_details(student_id)
     
     elif option == "6":
-        pass
+        course_code = input("Enter Course Code: ")
+        sms.display_course_details(course_code)
     
-    elif option == "7":
-        pass
+    # elif option == "7":
+    #     pass
     
-    elif option == "8":
-        pass
+    # elif option == "8":
+    #     pass
     
     elif option == "0":
         exit()

@@ -1,32 +1,86 @@
 [
-  {
-    "name": "Aisha",
-    "age": 20,
-    "address": "Chittagong",
-    "student_id": "S002"
-  },
-  {
-    "name": "Rahim",
-    "age": 21,
-    "address": "Sylhet",
-    "student_id": "S003"
-  },
-  {
-    "name": "Priya",
-    "age": 23,
-    "address": "Rajshahi",
-    "student_id": "S004"
-  },
-  {
-    "name": "Ahmed",
-    "age": 22,
-    "address": "Khulna",
-    "student_id": "S005"
-  },
-  {
-    "name": "Farah",
-    "age": 19,
-    "address": "Barishal",
-    "student_id": "S006"
-  }
+    {
+        "name": "Amrita",
+        "age": 25,
+        "address": "Dhaka",
+        "student_id": "S009",
+        "courses": [
+            {
+                "course_code": "MTH101",
+                "course_name": "Mathematics",
+                "enrollment_date": "2024-10-28",
+                "status": "enrolled"
+            },
+            {
+                "course_code": "CHM102",
+                "course_name": "Chemistry",
+                "enrollment_date": "2024-10-28",
+                "status": "enrolled"
+            },
+            {
+                "course_code": "CHM102",
+                "course_name": "Chemistry",
+                "enrollment_date": "2024-10-28",
+                "status": "enrolled"
+            }
+        ]
+    },
+    {
+        "name": "Aisha",
+        "age": 20,
+        "address": "Chittagong",
+        "student_id": "S002",
+        "courses": [
+            {
+                "course_code": "MTH101",
+                "course_name": "Mathematics",
+                "enrollment_date": "2024-10-28",
+                "status": "enrolled"
+            },
+            {
+                "course_code": "CHM102",
+                "course_name": "Chemistry",
+                "enrollment_date": "2024-10-28",
+                "status": "enrolled"
+            },
+            {
+                "course_code": "CSE104",
+                "course_name": "Computer Science",
+                "enrollment_date": "2024-10-28",
+                "status": "enrolled"
+            }
+        ]
+    },
+    {
+        "name": "Rahim",
+        "age": 21,
+        "address": "Sylhet",
+        "student_id": "S003",
+        "courses": [
+            {
+                "course_code": "ECO105",
+                "course_name": "Economics",
+                "enrollment_date": "2024-10-28",
+                "status": "enrolled"
+            }
+        ]
+    },
+    {
+        "name": "Priya",
+        "age": 23,
+        "address": "Rajshahi",
+        "student_id": "S004"
+    },
+    {
+        "name": "Ahmed",
+        "age": 22,
+        "address": "Khulna",
+        "student_id": "S005"
+    },
+    {
+        "name": "Farah",
+        "age": 19,
+        "address": "Barishal",
+        "student_id": "S006"
+    }
 ]
