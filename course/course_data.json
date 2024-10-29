@@ -2,31 +2,43 @@
   {
     "course_name": "Mathematics",
     "course_code": "MTH101",
-    "insturctor": "Dr. Farida Rahman"
+    "insturctor": "Dr. Farida Rahman",
+    "students": []
   },
   {
     "course_name": "Chemistry",
     "course_code": "CHM102",
-    "insturctor": "Dr. Mahmudul Hasan"
+    "insturctor": "Dr. Mahmudul Hasan",
+    "students": []
   },
   {
     "course_name": "Biology",
     "course_code": "BIO103",
-    "insturctor": "Dr. Nazma Begum"
+    "insturctor": "Dr. Nazma Begum",
+    "students": []
   },
   {
     "course_name": "Computer Science",
     "course_code": "CSE104",
-    "insturctor": "Dr. Shamsul Arefin"
+    "insturctor": "Dr. Shamsul Arefin",
+    "students": []
   },
   {
     "course_name": "Economics",
     "course_code": "ECO105",
-    "insturctor": "Dr. Rina Sultana"
+    "insturctor": "Dr. Rina Sultana",
+    "students": []
   },
   {
     "course_name": "History",
     "course_code": "HIS106",
-    "insturctor": "Dr. Ahsanul Haque"
+    "insturctor": "Dr. Ahsanul Haque",
+    "students": []
+  },
+  {
+    "course_name": "ABC",
+    "course_code": "ABC123",
+    "insturctor": "Amrita Dey",
+    "students": []
   }
 ]

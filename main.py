@@ -4,8 +4,7 @@ from course.course import Course
 from utilities.student_utilites import addDataToJSONFile
 from utilities.student_utilites import loadDataFromJSONFile
 import os
-
-
+ 
 current_path = os.getcwd()
 
 class StudentManagementSystem:
@@ -13,9 +12,18 @@ class StudentManagementSystem:
     def __init__(self):
         students = loadDataFromJSONFile(fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
         courses = loadDataFromJSONFile(fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
+        
         self.students = StudentManagementSystem.dictToObject(list=students, class_name=Student)
         self.courses = StudentManagementSystem.dictToObject(list=courses, class_name=Course)
-
+        
+        for student in self.students:
+            if hasattr(student, 'courses'):
+                for enrolled_course in student.courses:
+                    for course in self.courses:
+                        if course.course_code == enrolled_course["course_code"]:
+                            course.add_student(student)
+                            break
+                
     def add_student(self, name, age, address, student_id):
         existing_student = StudentManagementSystem.record_exists(records=self.students, searchKey="student_id", searchValue=student_id)
         if existing_student:
@@ -59,7 +67,6 @@ class StudentManagementSystem:
         if existing_student and existing_course:
             existing_student.enroll_course(existing_course)
             return
-        
         # Print appropriate error messages based on the missing record(s)
         if not existing_student:
             print("Error:: Enrollment failed. No student found with the provided student ID.")
@@ -71,6 +78,7 @@ class StudentManagementSystem:
     def add_grade(self, studentId, course_code):
         pass
     
+    
     def display_student_details(self, student_id):
         existing_student = StudentManagementSystem.record_exists(self.students, "student_id", student_id)
         if existing_student:
@@ -78,9 +86,11 @@ class StudentManagementSystem:
             return
         print(f"ERROR:: Student ID {student_id} doesn't exist.")
     
+    
     def display_course_details(self, course_code):
         existing_course = StudentManagementSystem.record_exists(self.courses, "course_code", course_code)
         existing_course.display_course_info()
+         
          
     @staticmethod
     def record_exists(records, searchKey, searchValue):       
@@ -92,7 +102,6 @@ class StudentManagementSystem:
     @staticmethod
     def dictToObject(list, class_name):
         return [class_name(**dict) for dict in list]
-        
             
     
 sms = StudentManagementSystem()

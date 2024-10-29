@@ -18,8 +18,6 @@ def loadDataFromJSONFile(filePath, fileName):
     
     fullPath = os.path.join(filePath, fileName)
     
-    print(fullPath)
-    
     if os.path.exists(fullPath):
         with open(fullPath, "r") as fp:
             try:
