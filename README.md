@@ -4,13 +4,13 @@ A CLI-based Student Management System built with Python, following Object-Orient
 
 Features
 ========
-Add Student: Add a new student with personal details and a unique ID.
-Add Course: Create a new course with a unique code, instructor, and a list of enrolled students.
-Enroll in Course: Enroll a student in a specified course.
-Add Grade: Assign or update grades for students in their enrolled courses.
-Display Student Details: View details of a student, including their enrolled courses and grades.
-Display Course Details: View details of a course, including the instructor and enrolled students.
-Save and Load Data: Save student and course data to a JSON file and load it upon restart.
+1. Add Student: Add a new student with personal details and a unique ID.
+2. Add Course: Create a new course with a unique code, instructor, and a list of enrolled students.
+3. Enroll in Course: Enroll a student in a specified course.
+4. Add Grade: Assign or update grades for students in their enrolled courses.
+5. Display Student Details: View details of a student, including their enrolled courses and grades.
+6. Display Course Details: View details of a course, including the instructor and enrolled students.
+7. Save and Load Data: Save student and course data to a JSON file and load it upon restart.
 
 Installation
 ============
