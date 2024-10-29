@@ -1,22 +1,24 @@
 [
     {
-        "name": "Amrita",
-        "age": 25,
-        "address": "Tangail",
-        "student_id": "S009",
+        "name": "Farah",
+        "age": 19,
+        "address": "Barishal",
+        "student_id": "S004",
         "courses": [
             {
                 "course_code": "ECO105",
                 "course_name": "Economics",
                 "enrollment_date": "2024-10-29",
                 "status": "enrolled"
-            },
-            {
-                "course_code": "MTH101",
-                "course_name": "Mathematics",
-                "enrollment_date": "2024-10-29",
-                "status": "enrolled"
-            },
+            }
+        ]
+    },
+    {
+        "name": "Amrita",
+        "age": 25,
+        "address": "Tangail",
+        "student_id": "S001",
+        "courses": [
             {
                 "course_code": "CSE311",
                 "course_name": "Database Management System",
@@ -24,15 +26,21 @@
                 "status": "enrolled"
             },
             {
-                "course_code": "HIS106",
-                "course_name": "History",
+                "course_code": "ECO105",
+                "course_name": "Economics",
+                "enrollment_date": "2024-10-29",
+                "status": "enrolled"
+            },
+            {
+                "course_code": "BIO103",
+                "course_name": "Biology",
                 "enrollment_date": "2024-10-29",
                 "status": "enrolled"
             }
         ],
         "grades": {
-            "Database Management System": "A",
-            "History": "B"
+            "Database Management System": "A+",
+            "Biology": "B"
         }
     },
     {
@@ -42,55 +50,23 @@
         "student_id": "S002",
         "courses": [
             {
-                "course_code": "MTH101",
-                "course_name": "Mathematics",
-                "enrollment_date": "2024-10-28",
-                "status": "enrolled"
-            },
-            {
-                "course_code": "CHM102",
-                "course_name": "Chemistry",
-                "enrollment_date": "2024-10-28",
-                "status": "enrolled"
-            },
-            {
-                "course_code": "CSE104",
-                "course_name": "Computer Science",
-                "enrollment_date": "2024-10-28",
-                "status": "enrolled"
-            }
-        ]
-    },
-    {
-        "name": "Rahim",
-        "age": 21,
-        "address": "Sylhet",
-        "student_id": "S003",
-        "courses": [
-            {
-                "course_code": "ECO105",
-                "course_name": "Economics",
-                "enrollment_date": "2024-10-28",
+                "course_code": "CSE311",
+                "course_name": "Database Management System",
+                "enrollment_date": "2024-10-29",
                 "status": "enrolled"
             }
         ]
     },
     {
         "name": "Priya",
-        "age": 23,
-        "address": "Rajshahi",
-        "student_id": "S004"
+        "age": 25,
+        "address": "Chittagong",
+        "student_id": "S003"
     },
     {
         "name": "Ahmed",
         "age": 22,
         "address": "Khulna",
         "student_id": "S005"
-    },
-    {
-        "name": "Farah",
-        "age": 19,
-        "address": "Barishal",
-        "student_id": "S006"
     }
 ]

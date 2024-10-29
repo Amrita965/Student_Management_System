@@ -63,8 +63,6 @@ class Student(Person):
         filePath=os.path.join(current_path, 'student')
         fullPath = os.path.join(filePath, fileName)
         current_student = self.__dict__
-        print("Current Student:", current_student)
-        print("\n\n")
         
         enrollment_date = datetime.today().strftime("%Y-%m-%d")
         
@@ -78,7 +76,6 @@ class Student(Person):
         if 'courses' in current_student:
             
             for enrolledCourse in current_student['courses']:
-                print(enrolledCourse)
                 if enrolledCourse['course_code'] == course.course_code:
                     print(f"Error:: Student {self.student_id} is already enrolled in course {course.course_name}.")
                     return
