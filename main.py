@@ -28,7 +28,7 @@ class StudentManagementSystem:
         existing_student = StudentManagementSystem.record_exists(records=self.students, searchKey="student_id", searchValue=student_id)
         if existing_student:
              # Print an error message advising the user that the student id already exists
-            print(f"Error:: Student with ID {student_id} already exists. Please enter a unique student ID.")
+            print(f"Student with ID {student_id} already exists. Please enter a unique student ID.")
             return
         # Create an Instance of Student Class
         student_obj = Student(name, age, address, student_id)
@@ -46,7 +46,7 @@ class StudentManagementSystem:
         existing_course = StudentManagementSystem.record_exists(records=self.courses, searchKey="course_code", searchValue=course_code)
         
         if existing_course:
-            print(f"Error:: Course with code {course_code} already exists. Please enter a unique course code.")
+            print(f"Course with code {course_code} already exists. Please enter a unique course code.")
             return
         # Create an Instance of Course Class
         course_obj = Course(course_name, course_code, instructor)
@@ -67,7 +67,7 @@ class StudentManagementSystem:
         if existing_student and existing_course:
             existing_student.enroll_course(existing_course)
             return
-        # Print appropriate error messages based on the missing record(s)
+        # Print appropriate error messages based on the missing record
         if not existing_student:
             print("Error:: Enrollment failed. No student found with the provided student ID.")
         
@@ -75,9 +75,19 @@ class StudentManagementSystem:
             print("Error:: Enrollment failed. No course found with the provided course code.")
 
         
-    def add_grade(self, studentId, course_code):
-        pass
-    
+    def add_grade(self, student_id, course_code, grade):
+        existing_student = StudentManagementSystem.record_exists(self.students, "student_id", student_id)
+        existing_course = StudentManagementSystem.record_exists(self.courses, "course_code", course_code)
+
+        if existing_student and existing_course:
+            existing_student.add_grade(existing_course, grade)
+            return
+        # Print appropriate error messages based on the missing record
+        if not existing_student:
+            print("Error:: Enrollment failed. No student found with the provided student ID.")
+        
+        if not existing_course:
+            print("Error:: Enrollment failed. No course found with the provided course code.")
     
     def display_student_details(self, student_id):
         existing_student = StudentManagementSystem.record_exists(self.students, "student_id", student_id)
@@ -115,8 +125,6 @@ def display_menu():
 4. Add Grade for Student
 5. Display Student Details
 6. Display Course Details
-7. Save Data to File
-8. Load Data from File
 0. Exit
 """
     print(mainMenu)
@@ -124,7 +132,7 @@ def display_menu():
     return option
     
 while True:
-    
+    print()
     option = display_menu()
     
     if option == "1":
@@ -147,7 +155,10 @@ while True:
         pass
     
     elif option == "4":
-        pass
+        student_id = input("Enter Student ID: ")
+        course_code = input("Enter Course Code: ")
+        grade = input("Enter Grade: ")
+        sms.add_grade(student_id, course_code, grade)
     
     elif option == "5":
         student_id = input("Enter Student ID: ")
@@ -157,16 +168,11 @@ while True:
         course_code = input("Enter Course Code: ")
         sms.display_course_details(course_code)
     
-    # elif option == "7":
-    #     pass
-    
-    # elif option == "8":
-    #     pass
-    
     elif option == "0":
+        print("Exiting Student Management System. Goodbye!")
         exit()
         
     else:
-        print("Invalid Option Selected. Please Try Again a Valid Choice.")
+        print("Error:: Invalid Option Selected. Please Try Again a Valid Choice.")
     
     

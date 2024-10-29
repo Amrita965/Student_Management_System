@@ -15,12 +15,10 @@ class Course:
         print("Course Name:", self.course_name)
         print("Code:", self.course_code)
         print("Instructor:", self.insturctor)
-        print("Enrolled Students:")
-        print("--------------------------------------------------")
+        print("Enrolled Students:", end=" ")
         for student in self.students:
-            print("Student ID:", student.student_id)
-            print("Student Name:", student.name)
-            print("--------------------------------------------------")
+            print(f"{student.name}", end=", ")
+
         
         
 

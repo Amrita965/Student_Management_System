@@ -36,9 +36,9 @@
     "students": []
   },
   {
-    "course_name": "ABC",
-    "course_code": "ABC123",
-    "insturctor": "Amrita Dey",
+    "course_name": "Database Management System",
+    "course_code": "CSE311",
+    "insturctor": "Ms. Zahura Zaman",
     "students": []
   }
 ]
