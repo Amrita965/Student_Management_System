@@ -15,6 +15,7 @@ Save and Load Data: Save student and course data to a JSON file and load it upon
 Installation
 ============
 git clone https://github.com/Amrita965/Student_Management_System.git
+
 cd Student_Management_System
 
 Run the script
