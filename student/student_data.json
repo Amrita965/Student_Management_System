@@ -1,5 +1,29 @@
 [
     {
+        "name": "Amrita",
+        "age": 25,
+        "address": "Dhaka",
+        "student_id": "S001",
+        "courses": [
+            {
+                "course_code": "CSE311",
+                "course_name": "Database Management System",
+                "enrollment_date": "2024-10-31",
+                "status": "enrolled"
+            },
+            {
+                "course_code": "MTH101",
+                "course_name": "Mathematics",
+                "enrollment_date": "2024-10-31",
+                "status": "enrolled"
+            }
+        ],
+        "grades": {
+            "Database Management System": "A+",
+            "Mathematics": "B"
+        }
+    },
+    {
         "name": "Farah",
         "age": 19,
         "address": "Barishal",
@@ -12,36 +36,6 @@
                 "status": "enrolled"
             }
         ]
-    },
-    {
-        "name": "Amrita",
-        "age": 25,
-        "address": "Tangail",
-        "student_id": "S001",
-        "courses": [
-            {
-                "course_code": "CSE311",
-                "course_name": "Database Management System",
-                "enrollment_date": "2024-10-29",
-                "status": "enrolled"
-            },
-            {
-                "course_code": "ECO105",
-                "course_name": "Economics",
-                "enrollment_date": "2024-10-29",
-                "status": "enrolled"
-            },
-            {
-                "course_code": "BIO103",
-                "course_name": "Biology",
-                "enrollment_date": "2024-10-29",
-                "status": "enrolled"
-            }
-        ],
-        "grades": {
-            "Database Management System": "A+",
-            "Biology": "B"
-        }
     },
     {
         "name": "Aisha",

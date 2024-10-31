@@ -4,18 +4,23 @@ from course.course import Course
 from utilities.student_utilites import addDataToJSONFile
 from utilities.student_utilites import loadDataFromJSONFile
 import os
- 
+
 current_path = os.getcwd()
 
 class StudentManagementSystem:
     
     def __init__(self):
+        # Load students data from student_data.json file
         students = loadDataFromJSONFile(fileName="student_data.json", filePath=os.path.join(current_path, 'student'))
+        # Load courses data from course_data.json file
         courses = loadDataFromJSONFile(fileName="course_data.json", filePath=os.path.join(current_path, 'course'))
         
+        # Convert the list of student dictionaries into Student objects
         self.students = StudentManagementSystem.dictToObject(list=students, class_name=Student)
+        # Convert the list of course dictionaries into Course objects
         self.courses = StudentManagementSystem.dictToObject(list=courses, class_name=Course)
         
+        # Enroll each student in their respective courses by matching course codes and adding them to the course's student list
         for student in self.students:
             if hasattr(student, 'courses'):
                 for enrolled_course in student.courses:
@@ -89,25 +94,30 @@ class StudentManagementSystem:
         if not existing_course:
             print("Error:: Enrollment failed. No course found with the provided course code.")
     
+    
     def display_student_details(self, student_id):
         existing_student = StudentManagementSystem.record_exists(self.students, "student_id", student_id)
         if existing_student:
             existing_student.display_student_info()
             return
-        print(f"ERROR:: Student ID {student_id} doesn't exist.")
+        print(f"Error:: Student ID {student_id} doesn't exist.")
     
     
     def display_course_details(self, course_code):
         existing_course = StudentManagementSystem.record_exists(self.courses, "course_code", course_code)
-        existing_course.display_course_info()
+        if existing_course:
+            existing_course.display_course_info()
+            return
+        print(f"Error:: Course {course_code} doesn't exist.")
          
-         
+  
     @staticmethod
     def record_exists(records, searchKey, searchValue):       
         for record in records:
            if (record.__dict__)[searchKey] == searchValue:
                return record
         return None
+    
     
     @staticmethod
     def dictToObject(list, class_name):
@@ -152,7 +162,6 @@ while True:
         student_id = input("Enter Student ID: ")
         course_code = input("Enter Course Code: ")
         sms.enroll_in_course(student_id, course_code)
-        pass
     
     elif option == "4":
         student_id = input("Enter Student ID: ")

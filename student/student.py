@@ -1,15 +1,19 @@
 
 from person.person import Person
-from course.course import Course
 from datetime import datetime
 from utilities.student_utilites import loadDataFromJSONFile
-import os
-current_path = os.getcwd()
 import json
+import os
 
+current_path = os.getcwd()
+fileName="student_data.json" 
+filePath=os.path.join(current_path, 'student')
+fullPath = os.path.join(filePath, fileName)
+        
 class Student(Person):
     
     def __init__(self, name, age, address, student_id, courses=[], grades = {}):
+        # Call the Person class constructor to set common attributes
         super().__init__(name, age, address)
         self.student_id = student_id 
         
@@ -21,11 +25,7 @@ class Student(Person):
             
         
     def add_grade(self, subject, grade):
-        
-        fileName="student_data.json" 
-        filePath=os.path.join(current_path, 'student')
-        fullPath = os.path.join(filePath, fileName)
-        
+        # Check if 'Courses' attribute exist in the current student
         if hasattr(self, 'courses'):
             has_enrolled = False
             for enrolled_course in self.courses:
@@ -59,9 +59,6 @@ class Student(Person):
     
     def enroll_course(self, course):
         
-        fileName="student_data.json" 
-        filePath=os.path.join(current_path, 'student')
-        fullPath = os.path.join(filePath, fileName)
         current_student = self.__dict__
         
         enrollment_date = datetime.today().strftime("%Y-%m-%d")
@@ -72,14 +69,15 @@ class Student(Person):
             "enrollment_date": enrollment_date,
             "status": "enrolled"
         }
-        
+        # Check if 'courses' key exists in the current_student dictionary
         if 'courses' in current_student:
-            
+            # Check if the course code matches the course the student is attempting to enroll in
             for enrolledCourse in current_student['courses']:
+                # Print an error message indicating the student is already enrolled in this course
                 if enrolledCourse['course_code'] == course.course_code:
                     print(f"Error:: Student {self.student_id} is already enrolled in course {course.course_name}.")
                     return
-                
+            # Append the enrollment information to the student's courses list    
             self.courses.append(enrollment_info)
         else:
             current_student['courses'] = [
@@ -100,16 +98,14 @@ class Student(Person):
  
     def display_student_info(self):
         print("Student Information:")
-        print(f"Name: {self.name}")
+        super().display_person_info()
         print(f"ID: {self.student_id}")
-        print(f"Age: {self.age}")
-        print(f"Address: {self.address}")
-        
+        # Check if the 'courses' attribute exists in the object
         if hasattr(self, 'courses'):
             print("Enrolled Courses:", end=" ")
             for course in self.courses:
                 print(course['course_name'], end=", ")
-                
+        # Check if the 'grades' attribute exists in the object        
         if hasattr(self, 'grades'):
             print("\nGrades:", self.grades)
 
